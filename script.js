@@ -14,15 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ------------------------------------------
-   1. Theme Toggle (Dark / Light)
+   1. Theme Toggle (Light Theme Default)
    ------------------------------------------ */
 function initThemeToggle() {
   const toggleBtn = document.getElementById('theme-toggle');
   if (!toggleBtn) return;
 
-  const currentTheme = localStorage.getItem('theme') || 'dark';
+  const currentTheme = localStorage.getItem('theme') || 'light';
   if (currentTheme === 'light') {
     document.body.classList.add('light-theme');
+    toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+  } else {
+    document.body.classList.remove('light-theme');
     toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
   }
 
@@ -30,7 +33,7 @@ function initThemeToggle() {
     document.body.classList.toggle('light-theme');
     const isLight = document.body.classList.contains('light-theme');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    toggleBtn.innerHTML = isLight ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    toggleBtn.innerHTML = isLight ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
   });
 }
 

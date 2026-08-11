@@ -50,9 +50,9 @@
 /* Light Theme */
 body.light-theme {
   --bg-primary: #F8FAFC;
-  --bg-secondary: #EDF2F7;
+  --bg-secondary: #F1F5F9;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F1F5F9;
+  --bg-card-hover: #F8FAFC;
   --bg-modal: #FFFFFF;
 
   --text-main: #0F172A;
@@ -64,6 +64,23 @@ body.light-theme {
 
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .input-icon-wrapper {
+  background: #FFFFFF;
+  border-color: rgba(197, 155, 39, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+body.light-theme .input-icon-wrapper input,
+body.light-theme .input-icon-wrapper select,
+body.light-theme .input-icon-wrapper textarea {
+  color: #0F172A;
+}
+
+body.light-theme .input-icon-wrapper select option {
+  background: #FFFFFF;
+  color: #0F172A;
 }
 
 /* Reset */
