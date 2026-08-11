@@ -35,7 +35,7 @@ function initThemeToggle() {
 }
 
 /* ------------------------------------------
-   2. Mobile Navigation Menu
+   2. Mobile Navigation Menu & Drawer
    ------------------------------------------ */
 function initMobileMenu() {
   const mobileBtn = document.getElementById('mobile-toggle');
@@ -45,16 +45,21 @@ function initMobileMenu() {
 
   mobileBtn.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    const isExpanded = navMenu.classList.contains('active');
-    mobileBtn.innerHTML = isExpanded ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    mobileBtn.classList.toggle('active');
   });
 
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      closeMobileMenu();
     });
   });
+}
+
+function closeMobileMenu() {
+  const mobileBtn = document.getElementById('mobile-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  if (navMenu) navMenu.classList.remove('active');
+  if (mobileBtn) mobileBtn.classList.remove('active');
 }
 
 /* ------------------------------------------
