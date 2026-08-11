@@ -43,12 +43,14 @@ function initThemeToggle() {
 function initMobileMenu() {
   const mobileBtn = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
+  const overlay = document.getElementById('mobile-overlay');
   
   if (!mobileBtn || !navMenu) return;
 
   mobileBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileBtn.classList.toggle('active');
+    const isActive = navMenu.classList.toggle('active');
+    mobileBtn.classList.toggle('active', isActive);
+    if (overlay) overlay.classList.toggle('active', isActive);
   });
 
   document.querySelectorAll('.nav-link').forEach(link => {
@@ -61,8 +63,10 @@ function initMobileMenu() {
 function closeMobileMenu() {
   const mobileBtn = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
+  const overlay = document.getElementById('mobile-overlay');
   if (navMenu) navMenu.classList.remove('active');
   if (mobileBtn) mobileBtn.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
 }
 
 /* ------------------------------------------

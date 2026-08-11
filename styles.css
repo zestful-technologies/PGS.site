@@ -1413,6 +1413,26 @@ body.light-theme .navbar-header {
 .modal-logo { height: 50px; margin-bottom: 0.5rem; }
 .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: transparent; color: var(--text-muted); font-size: 1.8rem; }
 
+/* Mobile Menu Backdrop Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 /* Minimal Smooth Animations */
 @keyframes fadeInUp {
   from {
@@ -1460,6 +1480,7 @@ body.light-theme .navbar-header {
 
   .navbar-header {
     height: 72px;
+    z-index: 1002;
   }
 
   .nav-container {
@@ -1503,6 +1524,13 @@ body.light-theme .navbar-header {
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: var(--transition);
+    z-index: 1003;
+  }
+
+  body.light-theme .mobile-toggle {
+    background: #FFFFFF;
+    border-color: rgba(197, 155, 39, 0.4);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
   .mobile-toggle .bar {
@@ -1533,19 +1561,19 @@ body.light-theme .navbar-header {
   /* Mobile Slide-out Navigation Drawer */
   .nav-menu {
     position: fixed;
-    top: 72px;
+    top: 0;
     right: -100%;
     width: 85%;
     max-width: 320px;
-    height: calc(100vh - 72px);
-    background: rgba(7, 15, 28, 0.98);
-    backdrop-filter: blur(20px);
+    height: 100vh;
+    background: #091526;
+    backdrop-filter: blur(24px);
     flex-direction: column;
-    padding: 2rem 1.5rem;
-    gap: 0.8rem;
-    border-left: 1px solid var(--border-color);
+    padding: 5.5rem 1.5rem 2rem 1.5rem;
+    gap: 0.6rem;
+    border-left: 1px solid var(--accent-gold);
     transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.75);
     z-index: 1001;
     overflow-y: auto;
     display: flex;
@@ -1558,17 +1586,21 @@ body.light-theme .navbar-header {
   .nav-menu .nav-link {
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--text-main);
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--border-subtle);
+    color: #FFFFFF !important;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
+  .nav-menu .nav-link span {
+    color: #FFFFFF !important;
+  }
+
   .nav-menu .nav-link i {
-    font-size: 0.85rem;
-    color: var(--accent-gold);
+    font-size: 0.9rem;
+    color: var(--accent-gold) !important;
   }
 
   .mobile-drawer-cta {
