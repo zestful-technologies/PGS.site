@@ -75,6 +75,7 @@ function closeMobileMenu() {
 function initScrollEffects() {
   const scrollBar = document.getElementById('scroll-bar');
   const backToTopBtn = document.getElementById('back-to-top');
+  const navbar = document.getElementById('navbar');
 
   window.addEventListener('scroll', () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -82,6 +83,14 @@ function initScrollEffects() {
     const scrolled = (winScroll / height) * 100;
 
     if (scrollBar) scrollBar.style.width = scrolled + '%';
+
+    if (navbar) {
+      if (winScroll > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
 
     if (backToTopBtn) {
       if (winScroll > 350) {
