@@ -377,8 +377,35 @@ function handleModalSubmit() {
   closeQuoteModal();
 }
 
+function handleModalEmail() {
+  const name = document.getElementById('modal-name').value.trim();
+  const phone = document.getElementById('modal-phone').value.trim();
+  const topic = document.getElementById('modal-topic').value;
+  const notes = document.getElementById('modal-notes').value.trim();
+
+  if (!name || !phone) {
+    showToast('Please provide your name/company and phone number.');
+    return;
+  }
+
+  const subject = `Proposal Request: ${topic} - ${name}`;
+  const body = `Dear Pascal Global Solutions Ltd Team,\n\n` +
+               `I am requesting a formal commercial proposal for:\n` +
+               `Service Division: ${topic}\n\n` +
+               `Client / Enterprise: ${name}\n` +
+               `Phone: ${phone}\n\n` +
+               `Project / Cargo Scope:\n${notes || 'N/A'}\n\n` +
+               `Please send your quotation and documentation checklist to this email.\n\n` +
+               `Regards,\n${name}`;
+
+  const mailtoUrl = `mailto:sales@pgsolutions.co.ke?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  showToast('Opening email to sales@pgsolutions.co.ke...');
+  window.location.href = mailtoUrl;
+  closeQuoteModal();
+}
+
 /* ------------------------------------------
-   10. Contact Form Submit Handler
+   10. Contact Form Submit Handlers
    ------------------------------------------ */
 function handleContactFormSubmit() {
   const name = document.getElementById('form-name').value;
@@ -392,6 +419,33 @@ function handleContactFormSubmit() {
               `📌 Division Needed: ${service}\n` +
               `💬 Inquiry Details: ${message}`;
 
-  showToast('Submitting corporate proposal...');
+  showToast('Submitting inquiry to WhatsApp...');
   window.open(`https://wa.me/254799210988?text=${encodeURIComponent(msg)}`, '_blank');
 }
+
+function handleContactFormEmail() {
+  const name = document.getElementById('form-name').value.trim();
+  const phone = document.getElementById('form-phone').value.trim();
+  const service = document.getElementById('form-service').value;
+  const message = document.getElementById('form-message').value.trim();
+
+  if (!name || !phone) {
+    showToast('Please provide your name/company and phone number.');
+    return;
+  }
+
+  const subject = `Corporate Inquiry: ${service} - ${name}`;
+  const body = `Dear Pascal Global Solutions Ltd Commercial Team,\n\n` +
+               `I would like to request assistance regarding your ${service} services.\n\n` +
+               `Company / Client Name: ${name}\n` +
+               `Phone Number: ${phone}\n` +
+               `Service Division: ${service}\n\n` +
+               `Project / Cargo / Tax Inquiry Details:\n${message || 'N/A'}\n\n` +
+               `Kindly revert with rate estimates and procedural requirements.\n\n` +
+               `Best regards,\n${name}`;
+
+  const mailtoUrl = `mailto:sales@pgsolutions.co.ke?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  showToast('Opening email to sales@pgsolutions.co.ke...');
+  window.location.href = mailtoUrl;
+}
+
